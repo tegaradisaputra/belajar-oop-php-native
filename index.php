@@ -2,6 +2,8 @@
 require_once __DIR__ . '/vendor/autoload.php';
 
 use App\Router;
+use App\Database;
+use App\User;
 
 $router = new Router();
 
@@ -11,6 +13,26 @@ $router->get('/', function() {
 
 $router->get('/about', function() {
     echo "welcome to AboutPage";
+});
+
+$router->get('/users', function() {
+    // $db = new Database;
+
+    // $koneksi = $db->connect();
+
+    // if ($koneksi) {
+    //     echo "Koneksi ke database sukses";
+    // } else {
+    //     echo "koneksi gagal";
+    // }
+
+    $userModel = new User();
+
+    $dataUsers = $userModel->all();
+
+    echo "===== DATA USERS DARI DATABASE ===== \n";
+
+    print_r($dataUsers);
 });
 
 $router->run();
